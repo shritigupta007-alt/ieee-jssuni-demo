@@ -1,0 +1,24 @@
+{
+  "name": "ieee_jssun-website-main",
+  "version": "1.0.0",
+  "description": "<<<<<<< HEAD\r IEEE JSS University Noida Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shritigupta007-alt/ieee-jssuni-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/shritigupta007-alt/ieee-jssuni-demo/issues"
+  },
+  "homepage": "https://github.com/shritigupta007-alt/ieee-jssuni-demo#readme",
+  "devDependencies": {
+    "sharp": "^0.35.3"
+  }
+}

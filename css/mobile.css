@@ -1,0 +1,392 @@
+
+
+/* Mobile Responsive Styles */
+
+@media (max-width: 1024px) {
+    
+    /* Navigation */
+    .navbar {
+        top: 30px;
+    }
+
+    .nav-brand img {
+        height: 40px;
+        width: auto;
+    }
+    
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 60px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background: rgb(20, 34, 70);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        transition: 0.3s ease-in-out;
+        overflow-y: auto;    /* Enables vertical scroll */
+        overflow-x: hidden;
+    }
+
+    /* Hide scrollbar visuals across browsers */
+    .nav-menu::-webkit-scrollbar {
+        width: 0;             /* Chrome/Safari */
+    }
+    .nav-menu {
+        -ms-overflow-style: none;  /* IE/Edge */
+        scrollbar-width: none;     /* Firefox */
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+
+    .nav-menu a:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .hamburger {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        z-index: 1001;
+    }
+
+    .hamburger .bar {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background: #fff;
+        margin: 5px 0;
+        transition: 0.3s;
+        border-radius: 3px;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Stats Section*/
+    .stat p {
+        font-size: 0.6rem;
+        color: var(--primary-color);
+    }
+
+    .stat-icon {
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        margin-bottom: 10px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+        color: var(--accent-color);
+        margin-bottom: 5px;
+    }
+    .top-bar-button{
+        display: block;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-button {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-image, .about-text {
+        flex: none;
+        width: 100%;
+    }
+
+    .about-text {
+        margin-top: 0px;
+        text-align: center;
+    }
+
+    .about-section {
+        padding: 30px 20px; /* Add padding for mobile layout */
+    }
+    .about-logo img {
+        width: 250px; /* Adjust the size as needed */
+        height: auto;
+    }
+
+    /* Mission Section */
+    .mission-vision-section {
+        padding: 30px 20px;
+    }
+
+    .mv-cards-container {
+        gap: 20px;
+    }
+
+    .mv-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+
+    /* Societies */
+    /* Responsive styles */
+    .societies-container {
+        gap: 30px;
+    }
+
+    .society {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .society-logo {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .society-title {
+        font-size: 1.2rem;
+    }
+
+    .society-description {
+        font-size: 0.9rem;
+    }
+
+    /* Resources */
+
+    .main-section-title {
+        font-size: 1.8rem;
+    }
+
+    .resource-slide-track {
+        width: calc(150px * 10); /* Adjust based on the number of slides */
+    }
+
+    .resource-slide {
+        width: 150px; /* Adjust the width of each slide */
+    }
+
+    @keyframes resource-scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-150px * 5)); /* Adjust based on the number of slides */
+        }
+    }
+
+    /* partners */
+    .ieee-partner {
+        flex: 1 1 calc(50% - 20px); /* 2 logos per row on smaller screens */
+        max-width: calc(50% - 20px);
+    }
+    .ieee-partners-section {
+        background-color: #fff;
+        padding: 50px 50px;
+        text-align: center;
+    }
+    
+    /* Benefits */
+    .benefit {
+        flex: 1 1 calc(50% - 20px); 
+        max-width: calc(50% - 20px);
+    }
+
+
+     /* Contact Section */
+     .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 20px;
+    }
+
+    .contact .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .contact .section-description {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .contact-form-container {
+        padding: 30px 20px;
+    }
+
+    .form-header h3 {
+        font-size: 1.3rem;
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+        padding: 12px 15px 12px 45px;
+    }
+
+    .submit-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .info-card {
+        padding: 20px;
+    }
+
+    .info-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .info-icon i {
+        font-size: 1.1rem;
+    }
+
+    .info-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .social-connect {
+        padding: 25px 20px;
+    }
+
+    .social-connect h3 {
+        font-size: 1.2rem;
+    }
+
+    .social-icons {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-right: 0;
+    }
+
+    .footer-logo {
+        margin: 0 auto 20px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    /* Contact Section */
+    .venue-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 20px;
+    }
+
+    .venue .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .venue .section-description {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    .vform-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .venue-form-container {
+        padding: 30px 20px;
+    }
+
+    .vform-header h3 {
+        font-size: 1.3rem;
+    }
+
+    .vinput-group input,
+    .vinput-group select,
+    .vinput-group textarea {
+        padding: 12px 15px 12px 45px;
+    }
+
+    .vsubmit-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+
+}
+
+@media (max-width: 480px) {
+    .ieee-partner {
+        flex: 1 1 100%; /* 1 logo per row on very small screens */
+        max-width: 100%;
+    }
+
+    .benefit {
+        flex: 1 1 100%; 
+        max-width: 100%;
+    }
+}
