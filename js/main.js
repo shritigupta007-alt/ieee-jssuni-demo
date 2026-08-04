@@ -27,8 +27,8 @@ hamburger.addEventListener('click', () => {
 
 // Hero Carousel
 const carouselImages = [
-    { src: 'assest/images/image1.png', caption: 'Membership  Drive' },
-    { src: 'assest/images/image2.png', caption: 'Membership Drive' },
+    { src: 'assest/images/image1.jpg', caption: 'Membership  Drive' },
+    { src: 'assest/images/image2.jpg', caption: 'Membership Drive' },
     { src: 'assest/images/JSSUN-2.jpg', caption: 'JSS Uni' }
 ];
 
