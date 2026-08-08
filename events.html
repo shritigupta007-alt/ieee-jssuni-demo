@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Events - IEEE JSS University Student Branch Noida</title>
+    <meta name="title" content="Events - IEEE JSS University Student Branch Noida">
+    <meta name="description"
+        content="Explore all events organized by IEEE JSS University Student Branch, Noida — workshops, technical talks, robotics competitions, and more.">
+    <meta name="author" content="IEEE JSS University Student Branch - Noida Web Team">
+    <meta name="robots" content="index, follow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpg" sizes="512x185" href="assets/images/logo-small-2.jpg">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        /* ── Events Page Specific Styles ── */
+
+        /* Hero Banner */
+        .events-hero {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #0b3a6b 60%, var(--primary-color) 100%);
+            color: var(--light-color);
+            padding: 140px 20px 70px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .events-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .events-hero .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .events-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--light-color);
+        }
+
+        .events-hero p {
+            font-size: 1.15rem;
+            color: var(--primary-color-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .events-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(252, 162, 22, 0.15);
+            border: 1px solid rgba(252, 162, 22, 0.4);
+            color: var(--secondary-color);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── Timeline Layout ── */
+        .events-page-section {
+            background-color: var(--bg-light-color);
+            padding: 70px 20px;
+        }
+
+        .events-timeline {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Centre spine */
+        .events-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color), var(--secondary-color));
+            transform: translateX(-50%);
+        }
+
+        /* ── Individual Event Item ── */
+        .ev-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: calc(50% + 40px);
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .ev-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: calc(50% + 40px);
+        }
+
+        /* Connector dot on the spine */
+        .ev-item::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: var(--secondary-color);
+            border: 3px solid var(--primary-color);
+            border-radius: 50%;
+            top: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 4px rgba(3, 114, 169, 0.15);
+            z-index: 2;
+        }
+
+        .ev-card {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.09);
+            overflow: hidden;
+            max-width: 480px;
+            width: 100%;
+            border-top: 4px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ev-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 36px rgba(3, 114, 169, 0.18);
+        }
+
+        /* Alternate accent colours per card */
+        .ev-item:nth-child(2) .ev-card {
+            border-top-color: var(--accent-color);
+        }
+
+        .ev-item:nth-child(3) .ev-card {
+            border-top-color: var(--secondary-color);
+        }
+
+        .ev-item:nth-child(4) .ev-card {
+            border-top-color: var(--accent-color-dark);
+        }
+
+        .ev-item:nth-child(5) .ev-card {
+            border-top-color: var(--primary-color-dark);
+        }
+
+        .ev-item:nth-child(6) .ev-card {
+            border-top-color: #7b2d8b;
+        }
+
+        .ev-item:nth-child(7) .ev-card {
+            border-top-color: #c40030;
+        }
+
+        .ev-item:nth-child(8) .ev-card {
+            border-top-color: var(--secondary-color);
+        }
+
+        /* Photo */
+        .ev-photo {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Card body */
+        .ev-body {
+            padding: 22px 24px 20px;
+        }
+
+        .ev-date-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(3, 114, 169, 0.1);
+            color: var(--primary-color-dark);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+
+        .ev-date-badge i {
+            font-size: 0.75rem;
+        }
+
+        .ev-title {
+            font-size: 1.22rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .ev-time {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.87rem;
+            color: #666;
+            margin-bottom: 14px;
+        }
+
+        .ev-time i {
+            color: var(--accent-color);
+            font-size: 0.82rem;
+        }
+
+        /* Event Flow label */
+        .ev-flow-label {
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 6px;
+        }
+
+        .ev-flow-text {
+            font-size: 0.92rem;
+            color: var(--text-color-dark);
+            line-height: 1.65;
+            margin-bottom: 18px;
+        }
+
+        /* vTools button */
+        .ev-vtools-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 20px;
+            background: var(--secondary-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: background 0.25s ease, transform 0.2s ease;
+        }
+
+        .ev-vtools-btn:hover {
+            background: var(--secondary-color-dark);
+            transform: translateY(-2px);
+        }
+
+        .ev-vtools-btn i {
+            font-size: 0.8rem;
+        }
+
+        /* Section title */
+        .events-page-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 60px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 16px;
+        }
+
+        .events-page-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .events-timeline::before {
+                left: 20px;
+            }
+
+            .ev-item,
+            .ev-item:nth-child(even) {
+                justify-content: flex-start;
+                padding-left: 60px;
+                padding-right: 0;
+            }
+
+            .ev-item::after {
+                left: 20px;
+            }
+
+            .ev-card {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .events-hero h1 {
+                font-size: 2rem;
+            }
+
+            .ev-photo {
+                height: 170px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="marquee-container">
+                <div class="marquee">
+                    <p>Welcome to IEEE JSS University Student Branch - Noida!</p>
+                    <p style="color: #ceefff">&nbsp;&nbsp;|&nbsp;&nbsp;Register Now for Android Workshop!</p>
+                    <p>&nbsp;&nbsp;|&nbsp;&nbsp;Android Workshop - 5th March, 2025</p>
+                </div>
+            </div>
+            <div class="links-container">
+                <a href="https://www.ieee.org/">IEEE Website</a><span class="separator">|</span>
+                <a href="http://www.ieeeup.org/">IEEE UP Section</a><span class="separator">|</span>
+                <a href="https://jssuninoida.edu.in/">JSSUNI Noida</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html#home">
+                    <img src="assets/images/nlogo.jpg" alt="IEEE JSSUN Logo" class="nav-logo">
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#benefits">Benefits</a>
+                <a href="events.html" class="active">Events</a>
+                <a href="achievements.html">Achievements</a>
+                <a href="gallery.html">Photo Gallery</a>
+                <a href="index.html#contact">Contact</a>
+                <a class="top-bar-button" href="https://www.ieee.org/">IEEE Website</a>
+                <a class="top-bar-button" href="http://www.ieeeup.org/">IEEE UP Section</a>
+                <a class="top-bar-button" href="https://jssuninoida.edu.in/">JSSUNI Noida</a>
+            </div>
+            <button class="hamburger" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="events-hero">
+        <div class="container">
+            <div class="events-hero-badge">
+                <i class="fas fa-calendar-alt"></i> All Events &middot; Chronological
+            </div>
+            <h1>Our Events</h1>
+            <p>A complete record of every event organized by IEEE JSS University Student Branch, Noida — from technical
+                workshops and expert talks to exciting competitions and community drives.</p>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="events-page-section">
+        <h2 class="events-page-title">Event Timeline</h2>
+
+        <div class="events-timeline">
+
+            <!-- ── 1. Android Workshop 2025  ·  5 March 2025 ── -->
+            <div class="ev-item">
+                <div class="ev-card">
+                    <img src="assets/images/poster-android_workshop.jpg" alt="Android Workshop 2025" class="ev-photo">
+                    <div class="ev-body">
+                        <div class="ev-date-badge">
+                            <i class="fas fa-calendar-day"></i>
+                            5 March 2025
+                        </div>
+                        <h3 class="ev-title">Android Workshop 2025</h3>
+                        <p class="ev-time">
+                            <i class="fas fa-clock"></i>
+                            1:30 PM – 4:30 PM &nbsp;&middot;&nbsp; Computer Lab, AB4
+                        </p>
+                        <p class="ev-flow-label">Event Flow</p>
+                        <p class="ev-flow-text">
+                            The session opened with a welcome address by the branch chairperson, followed by an
+                            introduction to Android development fundamentals. Senior student mentors led hands-on
+                            live-coding demos where participants built a simple app from scratch. The workshop covered
+                            UI design, the Activity lifecycle, and basic API calls, closing with a Q&amp;A and
+                            certificate distribution. Limited to 50 registered participants.
+                        </p>
+                        <a href="https://events.vtools.ieee.org/m/475668" target="_blank" rel="noopener noreferrer"
+                            class="ev-vtools-btn">
+                            View on vTools <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 2. E-Symposium ── -->
+            <div class="ev-item">
+                <div class="ev-card">
+                    <img src="assets/images/ieee3.jpg" alt="E-Symposium" class="ev-photo">
+                    <div class="ev-body">
+                        <div class="ev-date-badge">
+                            <i class="fas fa-calendar-day"></i>
+                            2025
+                        </div>
+                        <h3 class="ev-title">E-Symposium</h3>
+                        <p class="ev-time">
+                            <i class="fas fa-clock"></i>
+                            Full-day event &nbsp;&middot;&nbsp; JSS University, Noida
+                        </p>
+                        <p class="ev-flow-label">Event Flow</p>
+                        <p class="ev-flow-text">
+                            The E-Symposium brought together students and researchers to present cutting-edge ideas
+                            across electronics, AI, and sustainable engineering. The day began with a keynote address,
+                            followed by parallel technical paper presentations evaluated by faculty judges. Lightning
+                            talks and live project demonstrations filled the afternoon, and the event concluded with an
+                            awards ceremony honouring top presenters and an open networking session.
+                        </p>
+                        <a href="https://events.vtools.ieee.org/m/490002" target="_blank" rel="noopener noreferrer"
+                            class="ev-vtools-btn">
+                            View on vTools <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 3. BotBlitz Robotics Competition ── -->
+            <div class="ev-item">
+                <div class="ev-card">
+                    <img src="assets/images/Image1.jpg" alt="BotBlitz Robotics Competition" class="ev-photo">
+                    <div class="ev-body">
+                        <div class="ev-date-badge">
+                            <i class="fas fa-calendar-day"></i>
+                            2025 &middot; Annual University Fest
+                        </div>
+                        <h3 class="ev-title">BotBlitz Robotics Competition</h3>
+                        <p class="ev-time">
+                            <i class="fas fa-clock"></i>
+                            During Annual University Fest &nbsp;&middot;&nbsp; JSS University, Noida
+                        </p>
+                        <p class="ev-flow-label">Event Flow</p>
+                        <p class="ev-flow-text">
+                            BotBlitz was a head-to-head robotics challenge held during the university's annual fest.
+                            Teams of up to three participants assembled and programmed bots to navigate obstacle courses
+                            and complete timed challenges. Preliminary heats ran in the morning, followed by semi-finals
+                            and a grand finale in the evening. The top three teams received trophies and IEEE-branded
+                            merchandise.
+                        </p>
+                        <a href="https://events.vtools.ieee.org/m/493686" target="_blank" rel="noopener noreferrer"
+                            class="ev-vtools-btn">
+                            View on vTools <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 4. Poster Presentation Competition ── -->
+            <div class="ev-item">
+                <div class="ev-card">
+                    <img src="assets/images/image2.jpg" alt="Poster Presentation Competition" class="ev-photo">
+                    <div class="ev-body">
+                        <div class="ev-date-badge">
+                            <i class="fas fa-calendar-day"></i>
+                            2025 &middot; Annual University Fest
+                        </div>
+                        <h3 class="ev-title">Poster Presentation Competition</h3>
+                        <p class="ev-time">
+                            <i class="fas fa-clock"></i>
+                            During Annual University Fest &nbsp;&middot;&nbsp; JSS University, Noida
+                        </p>
+                        <p class="ev-flow-label">Event Flow</p>
+                        <p class="ev-flow-text">
+                            Students showcased their research ideas through scientific posters covering electronics,
+                            computer science, and green technology. Each team presented to a panel of faculty and
+                            industry evaluators during a dedicated judging window. Posters were assessed on novelty,
+                            clarity, and technical depth. The event closed with an open gallery walk for all attendees
+                            before prize distribution.
+                        </p>
+                        <a href="https://events.vtools.ieee.org/m/493684" target="_blank" rel="noopener noreferrer"
+                            class="ev-vtools-btn">
+                            View on vTools <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 5. Checkmate Challenge ── -->
+            <div class="ev-item">
+                <div class="ev-card">
+                    <img src="assets/images/JSSUN-1.jpg" alt="Checkmate Challenge" class="ev-photo">
+                    <div class="ev-body">
+                        <div class="ev-date-badge">
+                            <i class="fas fa-calendar-day"></i>
+                            2025 &middot; Annual University Fest
+                        </div>
+                        <h3 class="ev-title">Checkmate Challenge</h3>
+                        <p class="ev-time">
+                            <i class="fas fa-clock"></i>
+                            During Annual University Fest &nbsp;&middot;&nbsp; JSS University, Noida
+                        </p>
+                        <p class="ev-flow-label">Event Flow</p>
+                        <p class="ev-flow-text">
+                            A strategic chess tournament drawing participants from across the university. The
+                            competition used a Swiss-system format across five rounds with rapid time control (15+10).
+                            Opening and closing ceremonies were hosted by the branch chairperson, and a simultaneous
+                            exhibition game by a senior club member added excitement. The top three finalists received
+                            trophies and IEEE membership vouchers.
+                        </p>
+                        <a href="https://events.vtools.ieee.org/m/493685" target="_blank" rel="noopener noreferrer"
+                            class="ev-vtools-btn">
+                            View on vTools <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 6. IEEE Membership Drive & Initiation Ceremony ── -->
+            <div class="ev-item">
+                <div class="ev-card">
+                    <img src="assets/images/ieee4.jpg" alt="IEEE Membership Drive and Initiation Ceremony"
+                        class="ev-photo">
+                    <div class="ev-body">
+                        <div class="ev-date-badge">
+                            <i class="fas fa-calendar-day"></i>
+                            2025
+                        </div>
+                        <h3 class="ev-title">IEEE Membership Drive &amp; Initiation Ceremony</h3>
+                        <p class="ev-time">
+                            <i class="fas fa-clock"></i>
+                            JSS University, Noida
+                        </p>
+                        <p class="ev-flow-label">Event Flow</p>
+                        <p class="ev-flow-text">
+                            The event opened with a formal initiation ceremony welcoming new IEEE members and officially
+                            launching the IEEE Blockchain Community within the branch. Branch Counsellor Dr. Nitima
+                            Malsa addressed the gathering on the benefits of IEEE membership. New members took the IEEE
+                            pledge, received membership kits, and were introduced to the executive council. The ceremony
+                            closed with the announcement of sub-chapter leadership and an informal mixer.
+                        </p>
+                        <a href="https://events.vtools.ieee.org/m/505701" target="_blank" rel="noopener noreferrer"
+                            class="ev-vtools-btn">
+                            View on vTools <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 7. IEEE Day 2025 Technical Talk ── -->
+            <div class="ev-item">
+                <div class="ev-card">
+                    <img src="assets/images/JSSUN-2.jpg" alt="IEEE Day 2025 Technical Talk" class="ev-photo">
+                    <div class="ev-body">
+                        <div class="ev-date-badge">
+                            <i class="fas fa-calendar-day"></i>
+                            October 2025 &middot; IEEE Day
+                        </div>
+                        <h3 class="ev-title">IEEE Day 2025 – Technical Talk</h3>
+                        <p class="ev-time">
+                            <i class="fas fa-clock"></i>
+                            IEEE Day Celebrations &nbsp;&middot;&nbsp; JSS University, Noida
+                        </p>
+                        <p class="ev-flow-label">Event Flow</p>
+                        <p class="ev-flow-text">
+                            As part of global IEEE Day celebrations, the branch hosted an expert talk titled
+                            <em>"Building Scalable Applications — What Startups Can Teach You."</em> The speaker walked
+                            attendees through real-world startup architectures, microservices design patterns, and
+                            lessons learned at scale. The session included a live demo, an interactive Q&amp;A, and
+                            downloadable resource links. Participants received IEEE Day participation certificates.
+                        </p>
+                        <a href="https://events.vtools.ieee.org/m/505703" target="_blank" rel="noopener noreferrer"
+                            class="ev-vtools-btn">
+                            View on vTools <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 8. IEEE Day 2025 Technical Session ── -->
+            <div class="ev-item">
+                <div class="ev-card">
+                    <img src="assets/images/bg.jpg" alt="IEEE Day 2025 Technical Session" class="ev-photo">
+                    <div class="ev-body">
+                        <div class="ev-date-badge">
+                            <i class="fas fa-calendar-day"></i>
+                            October 2025 &middot; IEEE Day
+                        </div>
+                        <h3 class="ev-title">IEEE Day 2025 – Technical Session</h3>
+                        <p class="ev-time">
+                            <i class="fas fa-clock"></i>
+                            IEEE Day Celebrations &nbsp;&middot;&nbsp; JSS University, Noida
+                        </p>
+                        <p class="ev-flow-label">Event Flow</p>
+                        <p class="ev-flow-text">
+                            The second IEEE Day session, <em>"Innovation Through Prototyping — From Fab Lab to
+                                Market,"</em> focused on turning ideas into market-ready products. The speaker guided
+                            participants through rapid prototyping techniques, Fab Lab tools (laser cutters, 3D
+                            printers, CNC), and the business side of hardware startups. A hands-on show-and-tell segment
+                            let attendees interact with prototype examples, followed by a panel discussion with branch
+                            alumni working in product companies.
+                        </p>
+                        <a href="https://events.vtools.ieee.org/m/505707" target="_blank" rel="noopener noreferrer"
+                            class="ev-vtools-btn">
+                            View on vTools <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /events-timeline -->
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <img src="assets/images/LOGO 3.jpg" alt="IEEE JSSUN Logo" class="footer-logo">
+                        <p class="footer-description">IEEE JSS University Student Branch - Noida is the official
+                            Institute of
+                            Electrical and Electronics Engineers Student Branch of JSS University, Noida.</p>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/ieee_jssuni/" target="_blank" rel="noopener noreferrer"
+                                class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/company/ieee-jssuniversity-student-branch/"
+                                target="_blank" rel="noopener noreferrer" class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://x.com/ieeejssuni?s=11" target="_blank" class="social-link">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+                            <a href="https://www.facebook.com/profile.php?id=61572482950538" class="social-link">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="achievements.html">Achievements</a></li>
+                            <li><a href="index.html#resources">Resources</a></li>
+                            <li><a href="index.html#mission-vision">Mission &amp; Vision</a></li>
+                            <li><a href="index.html#benefits">Benefits</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4>Other Links</h4>
+                        <ul>
+                            <li><a href="index.html#faculty-members">Faculty Members</a></li>
+                            <li><a href="index.html#members">Executive Council</a></li>
+                            <li><a href="index.html#ieee-partners">Partners</a></li>
+                            <li><a href="gallery.html">Photo Gallery</a></li>
+                            <li><a href="events.html">Events</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-contact">
+                        <h4>Contact Info</h4>
+                        <div class="contact-info">
+                            <p><i class="fas fa-envelope"></i>ieeejssuniversity@gmail.com</p>
+                            <p><i class="fas fa-map-marker-alt"></i>C-Block, Phase 2, Sector 62, Noida, Uttar Pradesh,
+                                201301</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 IEEE JSS University Noida. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <p>Designed &amp; Managed by Web Team @IEEE-JSSUNI </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
