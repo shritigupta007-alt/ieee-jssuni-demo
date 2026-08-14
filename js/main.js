@@ -27,89 +27,91 @@ hamburger.addEventListener('click', () => {
 
 // Hero Carousel
 const carouselImages = [
-    { src: 'assest/images/image1.jpg', caption: 'Membership  Drive' },
-    { src: 'assest/images/image2.jpg', caption: 'Membership Drive' },
-    { src: 'assest/images/JSSUN-2.jpg', caption: 'JSS Uni' }
+    { src: 'assets/images/image1.png', caption: 'Membership Drive' },
+    { src: 'assets/images/image2.png', caption: 'Membership Drive' },
+    { src: 'assets/images/JSSUN-2.png', caption: 'JSS Uni' }
 ];
 
 let currentSlide = 0;
 const carousel = document.getElementById('heroCarousel');
 
-function createCarousel() {
-    carouselImages.forEach((image, index) => {
-        const slide = document.createElement('div');
-        slide.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
-        slide.style.backgroundImage = `url(${image.src})`;
-        
-        const caption = document.createElement('p');
-        caption.className = 'carousel-caption';
-        caption.textContent = image.caption;
-        
-        slide.appendChild(caption);
-        carousel.appendChild(slide);
-    });
+if (carousel) {
+    function createCarousel() {
+        carouselImages.forEach((image, index) => {
+            const slide = document.createElement('div');
+            slide.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
+            slide.style.backgroundImage = `url(${image.src})`;
+            
+            const caption = document.createElement('p');
+            caption.className = 'carousel-caption';
+            caption.textContent = image.caption;
+            
+            slide.appendChild(caption);
+            carousel.appendChild(slide);
+        });
+    }
+    createCarousel();
+
+    function nextHeroSlide() {
+        const slides = document.querySelectorAll('.carousel-slide');
+        if (slides.length === 0) return;
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    setInterval(nextHeroSlide, 5000);
 }
 
-function nextSlide() {
-    const slides = document.querySelectorAll('.carousel-slide');
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add('active');
-}
-
-// Change slide every 5 seconds
-setInterval(nextSlide, 5000);
-
-// Slider functionality
+// Hero background slider functionality
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.slider-dot');
 let sliderCurrentSlide = 0;
 
-function showSlide(index) {
-    slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
-    
-    slides[index].classList.add('active');
-    dots[index].classList.add('active');
-}
+if (slides.length > 0) {
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        slides[index].classList.add('active');
+        if (dots[index]) dots[index].classList.add('active');
+    }
 
-function nextSlide() {
-    sliderCurrentSlide = (sliderCurrentSlide + 1) % slides.length;
-    showSlide(sliderCurrentSlide);
-}
-
-// Add click events to dots
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        sliderCurrentSlide = index;
+    function nextSlide() {
+        sliderCurrentSlide = (sliderCurrentSlide + 1) % slides.length;
         showSlide(sliderCurrentSlide);
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            sliderCurrentSlide = index;
+            showSlide(sliderCurrentSlide);
+        });
     });
-});
 
-// Auto advance slides
-setInterval(nextSlide, 5000);
+    setInterval(nextSlide, 5000);
+}
 
-
-
+// Stats Counter Animation
 document.addEventListener('DOMContentLoaded', function () {
     const stats = document.querySelectorAll('.stat-number');
+    if (stats.length === 0) return;
 
     const animateStats = () => {
         stats.forEach(stat => {
-            const updateCount = () => {
-                const target = +stat.getAttribute('data-target');
-                const count = +stat.innerText;
-                const increment = target / 200;
-
-                if (count < target) {
-                    stat.innerText = Math.ceil(count + increment);
-                    setTimeout(updateCount, 10);
-                } else {
+            const target = +stat.getAttribute('data-target') || 0;
+            let current = 0;
+            const step = Math.max(1, Math.ceil(target / 40));
+            
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
                     stat.innerText = target;
+                    clearInterval(timer);
+                } else {
+                    stat.innerText = current;
                 }
-            };
-
-            updateCount();
+            }, 30);
         });
     };
 
@@ -121,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }, {
-        threshold: 0.5
+        threshold: 0.2
     });
 
     stats.forEach(stat => {
@@ -129,97 +131,24 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
-// events
+// Homepage Events Slider Guard
 document.addEventListener('DOMContentLoaded', function () {
     const track = document.querySelector('.event-slide-track');
+    if (!track || track.children.length === 0) return;
+
     const slides = Array.from(track.children);
     const slideWidth = slides[0].getBoundingClientRect().width;
 
-    // Duplicate slides for infinite effect
-    slides.forEach(slide => {
-        const clone = slide.cloneNode(true);
-        track.appendChild(clone);
-    });
-
-    // Arrange the slides next to one another
     const setSlidePosition = (slide, index) => {
         slide.style.left = slideWidth * index + 'px';
     };
-    const allSlides = Array.from(track.children);
-    allSlides.forEach(setSlidePosition);
-
-    const moveToSlide = (track, currentSlide, targetSlide) => {
-        track.style.transition = 'transform 0.5s ease-in-out';
-        track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
-        currentSlide.classList.remove('current-slide');
-        targetSlide.classList.add('current-slide');
-    };
-
-    // Auto slide
-    let currentIndex = 0;
-    let intervalId;
-
-    const startAutoSlide = () => {
-        intervalId = setInterval(() => {
-            const currentSlide = track.querySelector('.current-slide') || allSlides[0];
-            const nextSlide = currentSlide.nextElementSibling || allSlides[0];
-            moveToSlide(track, currentSlide, nextSlide);
-            currentIndex = (currentIndex + 1) % allSlides.length;
-
-            // Reset position for infinite effect
-            if (currentIndex === slides.length) {
-                track.style.transition = 'none';
-                track.style.transform = 'translateX(0)';
-                currentIndex = 0;
-            }
-        }, 3000); // Change slide every 3 seconds
-    };
-
-    const stopAutoSlide = () => {
-        clearInterval(intervalId);
-    };
-
-    startAutoSlide();
-
-    // Stop animation on hover
-    track.addEventListener('mouseenter', stopAutoSlide);
-    track.addEventListener('mouseleave', startAutoSlide);
+    slides.forEach(setSlidePosition);
 });
 
-
+// Homepage Gallery Track Guard
 document.addEventListener('DOMContentLoaded', function () {
     const track = document.querySelector('.gallery-slide-track');
-    const slides = Array.from(track.children);
-    const slideWidth = slides[0].getBoundingClientRect().width;
-
-    // Duplicate slides for infinite effect
-    slides.forEach(slide => {
-        const clone = slide.cloneNode(true);
-        track.appendChild(clone);
-    });
-
-    let currentIndex = 0;
-
-    const moveToNextSlide = () => {
-        currentIndex++;
-        track.style.transition = 'transform 0.5s linear';
-        track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
-
-        if (currentIndex >= slides.length) {
-            setTimeout(() => {
-                track.style.transition = 'none';
-                track.style.transform = 'translateX(0)';
-                currentIndex = 0;
-            }, 500); // Match the transition duration
-        }
-    };
-
-    const startInfiniteScroll = () => {
-        setInterval(moveToNextSlide, 3000); // Change slide every 3 seconds
-    };
-
-    startInfiniteScroll();
+    if (!track || track.children.length === 0) return;
 });
 
 // ==========================================================================

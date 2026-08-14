@@ -1108,6 +1108,22 @@ body {
     object-fit: cover;
 }
 
+.avatar-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 51, 102, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.8);
+}
+
+.avatar-vj { background: linear-gradient(135deg, #006699, #002b49); }
+.avatar-bc { background: linear-gradient(135deg, #7b1fa2, #4a148c); }
+.avatar-ss { background: linear-gradient(135deg, #00897b, #004d40); }
+.avatar-pp { background: linear-gradient(135deg, #d81b60, #880e4f); }
+
 .member-name {
     font-size: 1.5rem;
     color: var(--primary-color);
@@ -1934,7 +1950,7 @@ body {
     margin: 2rem 0;
     /* background-color: black; */
     margin: 0;
-    background-image: url("assets/images/bg.jpg");
+    background-image: url("assets/images/bg.png");
 }
 
 .hero-image {

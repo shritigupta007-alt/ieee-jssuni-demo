@@ -12,13 +12,13 @@ function walk(dir) {
     if (fs.statSync(fullPath).isDirectory()) {
       walk(fullPath);
     } else if (/\.(jpg|jpeg|png)$/i.test(file)) {
-      const tempPath = fullPath + '.tmp.jpg';
+      const tempPath = fullPath + '.tmp.png';
       sharp(fullPath)
         .resize({ width: maxWidth, withoutEnlargement: true })
-        .jpeg({ quality })
+        .png({ quality })
         .toFile(tempPath)
         .then(() => {
-          const finalPath = fullPath.replace(/\.(png|jpeg|jpg)$/i, '.jpg');
+          const finalPath = fullPath.replace(/\.(png|jpeg|jpg)$/i, '.png');
           fs.unlinkSync(fullPath);
           fs.renameSync(tempPath, finalPath);
           console.log('Compressed:', finalPath);
